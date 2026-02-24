@@ -1,0 +1,101 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body{
+  font-family: Arial, sans-serif;
+  background:#0b1633;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+/* TELA TOTEM 1080x1920 */
+.tela{
+  width:1080px;
+  height:1920px;
+  background: url("./fundo.png") center/cover no-repeat;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+/* ÁREA CENTRAL (onde ficam texto + botões) */
+.overlay{
+  width:100%;
+  padding: 420px 80px 260px; /* “como antes”: dá respiro pro topo e pro rodapé do fundo */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* TEXTOS */
+.texto-apoio{
+  color:#ffffff;
+  font-size:34px;
+  opacity:.95;
+  margin-bottom:10px;
+}
+
+.titulo{
+  color:#ffffff;
+  font-size:76px;
+  font-weight:900;
+  line-height:1.05;
+  margin-bottom:34px;
+  text-decoration: underline;
+  text-underline-offset: 14px;
+  text-decoration-thickness: 6px;
+}
+
+.titulo span{
+  display:block;
+  font-size:52px;
+  margin-top:6px;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 6px;
+}
+
+/* BOTÕES */
+.menu{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+  align-items:center;
+}
+
+.botao{
+  width:90%;
+  padding:26px 24px;
+  border-radius:18px;
+  text-decoration:none;
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:.5px;
+  box-shadow:0 10px 22px rgba(0,0,0,.25);
+}
+
+.roxo{ background:#8f96ea; color:#fff; }
+.azul{ background:#d7e6ff; color:#003a7a; }
+
+/* VOLTAR */
+.voltar{
+  position:absolute;
+  left:52px;
+  bottom:64px;
+  padding:14px 26px;
+  border-radius:14px;
+  background:#e6f0ff;
+  color:#003a7a;
+  font-weight:900;
+  text-decoration:none;
+  font-size:26px;
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+
+.voltar:active{ transform:scale(0.99); }
