@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADS</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background:#0b1633;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+}
+
+.tela{
+  width:1080px;
+  height:1920px;
+  position:relative;
+  background:#111;
+}
+
+/* vídeo inteiro */
+video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#111;
+}
+
+/* faixa inferior */
+.legenda{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:28px;
+  text-align:center;
+  font-size:34px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(90deg, rgba(49,88,189,.85), rgba(95,142,255,.35));
+}
+
+/* botão voltar */
+.voltar{
+  position:absolute;
+  left:30px;
+  bottom:95px;
+  padding:14px 24px;
+  background:#e6f0ff;
+  color:#003a7a;
+  font-weight:900;
+  text-decoration:none;
+  border-radius:10px;
+  font-size:26px;
+}
+</style>
+</head>
+
+<body>
+<div class="tela">
+
+<video src="./videos/ads.mp4" autoplay muted loop playsinline></video>
+
+<a class="voltar" href="graduacoes.html">VOLTAR</a>
+
+<div class="legenda">
+ANÁLISE E DESENVOLVIMENTO DE SISTEMAS
+</div>
+
+</div>
+</body>
+</html>
