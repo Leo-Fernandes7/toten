@@ -14,14 +14,14 @@
     html,body{height:100%}
 
     body{
-      background:#0b1633;
+      /* IMPORTANTE: isso evita aparecer borda escura quando o SCALE não ocupa 100% */
+      background:#2b57a7;
       overflow:hidden;
       -webkit-tap-highlight-color:transparent;
       user-select:none;
       font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
     }
 
-    /* Mantém 1080x1920 e só faz SCALE pra caber em qualquer tela */
     .stage{
       position:fixed;
       inset:0;
@@ -29,42 +29,32 @@
       align-items:center;
       justify-content:center;
     }
+
     .tela{
       width:1080px;
       height:1920px;
       position:relative;
       overflow:hidden;
-      background:#0b1633; /* aparece nas “margens” do fundo */
       transform-origin:center;
+      background:#2b57a7;
     }
 
-    /* FUNDO com margem (isso afasta os logos do fundo das bordas) */
-    ..bg{
-  position:absolute;
-  inset: 0; /* gruda em tudo */
-  background-image:url("./img/fundo.png");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  z-index:1;
-}
-     {
-
-     } 
-     
-     .bg{background-image:url("./img/fundo.png"); /* ✅ correto */
+    /* FUNDO ENCOSTANDO NAS BORDAS */
+    .bg{
+      position:absolute;
+      inset:0;
+      background-image:url("./img/fundo.png");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
+      z-index:1;
     }
 
-    /* Conteúdo em cima */
     .overlay{
       position:absolute;
       inset:0;
-      color:#fff; /* ✅ texto branco */
-
-      /* Ajuste do conteúdo (não do fundo) */
+      z-index:2;
+      color:#fff;
       padding: 560px 120px 520px;
       display:flex;
       flex-direction:column;
@@ -94,7 +84,7 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 26px; /* espaçamento entre botões */
+      gap: 26px;
       margin-top: 6px;
     }
 
@@ -145,7 +135,6 @@
   </div>
 
   <script>
-    // Scale automático mantendo 1080x1920 (Toten)
     function fitToten(){
       const tela = document.getElementById('tela');
       const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
@@ -155,8 +144,5 @@
     fitToten();
   </script>
 </body>
-
-</html>
-
 </html>
 
