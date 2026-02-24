@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Graduações</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      background:#0b1633;
+      overflow:hidden;
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
+    }
+
+    .stage{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .tela{
+      width:1080px;
+      height:1920px;
+      position:relative;
+      overflow:hidden;
+      background:#0b1633;
+      transform-origin:center;
+    }
+
+    .bg{
+      position:absolute;
+      --bgX: 18px;
+      --bgTop: 38px;
+      --bgBottom: 48px;
+
+      left: var(--bgX);
+      right: var(--bgX);
+      top: var(--bgTop);
+      bottom: var(--bgBottom);
+
+      background-image:url("./img/fundo.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+
+      z-index: 1;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      color:#fff;
+      padding: 520px 120px 520px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      z-index: 2;
+    }
+
+    .texto-apoio{
+      font-size: 30px;
+      opacity:.95;
+      margin-bottom: 10px;
+      text-shadow: 0 6px 16px rgba(0,0,0,.25);
+    }
+
+    .titulo{
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 22px;
+      text-shadow: 0 10px 20px rgba(0,0,0,.22);
+    }
+
+    .menu{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 22px;
+      margin-top: 6px;
+    }
+
+    .botao{
+      width: 900px;
+      padding: 22px 22px;
+      border-radius: 20px;
+      text-decoration:none;
+
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: .4px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      transition: transform .06s ease;
+      text-align:center;
+    }
+    .botao:active{ transform: scale(0.992); }
+
+    .roxo{ background:#8f96ea; color:#ffffff; }
+    .azul{ background:#d7e6ff; color:#003a7a; }
+
+    .voltar{
+      position:absolute;
+      left: 110px;
+      bottom: 520px;
+      text-decoration:none;
+
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+
+      padding: 14px 22px;
+      border-radius: 14px;
+
+      background: rgba(215,230,255,.85);
+      color:#003a7a;
+
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+
+      z-index: 3; /* acima da overlay */
+    }
+    .voltar:active{ transform: scale(0.99); }
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <main class="tela" id="tela">
+      <div class="bg" aria-hidden="true"></div>
+
+      <!-- ✅ sempre volta para toten.html -->
+      <a class="voltar" href="./toten.html">VOLTAR</a>
+
+      <section class="overlay">
+        <p class="texto-apoio">Selecione uma graduação</p>
+        <h1 class="titulo">para assistir:</h1>
+
+        <nav class="menu">
+          <a class="botao roxo" href="./ads.html">ANÁLISE E DESENVOLVIMENTO DE SISTEMAS</a>
+          <a class="botao azul" href="./pmm.html">PRODUÇÃO MULTIMÍDIA</a>
+          <a class="botao roxo" href="./mk.html">MARKETING</a>
+          <a class="botao azul" href="./redes.html">REDES DE COMPUTADORES</a>
+          <a class="botao roxo" href="./pcg.html">PROCESSOS GERENCIAIS</a>
+        </nav>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function fitToten(){
+      const tela = document.getElementById('tela');
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+      tela.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fitToten);
+    fitToten();
+  </script>
+</body>
+</html>
