@@ -39,19 +39,15 @@
     }
 
     /* FUNDO com margem (isso afasta os logos do fundo das bordas) */
-    .bg{
-      position:absolute;
-
-      /* AJUSTE AQUI a margem DO FUNDO */
-      --bgX: 18px;     /* laterais */
-      --bgTop: 38px;   /* topo */
-      --bgBottom: 48px;/* rodapé */
-
-      left: var(--bgX);
-      right: var(--bgX);
-      top: var(--bgTop);
-      bottom: var(--bgBottom);
-
+    ..bg{
+  position:absolute;
+  inset: 0; /* gruda em tudo */
+  background-image:url("./img/fundo.png");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:1;
+}
       background-image:url("./img/fundo.png"); /* ✅ correto */
       background-size:cover;
       background-position:center;
@@ -155,4 +151,5 @@
     fitToten();
   </script>
 </body>
+
 </html>
