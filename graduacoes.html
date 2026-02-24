@@ -14,7 +14,8 @@
     html,body{height:100%}
 
     body{
-      background:#0b1633;
+      /* evita aparecer borda escura por causa do SCALE */
+      background:#2b57a7;
       overflow:hidden;
       -webkit-tap-highlight-color:transparent;
       user-select:none;
@@ -28,32 +29,25 @@
       align-items:center;
       justify-content:center;
     }
+
     .tela{
       width:1080px;
       height:1920px;
       position:relative;
       overflow:hidden;
-      background:#0b1633;
+      background:#2b57a7;
       transform-origin:center;
     }
 
+    /* FUNDO ENCOSTANDO NAS BORDAS */
     .bg{
       position:absolute;
-      --bgX: 18px;
-      --bgTop: 38px;
-      --bgBottom: 48px;
-
-      left: var(--bgX);
-      right: var(--bgX);
-      top: var(--bgTop);
-      bottom: var(--bgBottom);
-
+      inset:0;
       background-image:url("./img/fundo.png");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
-
-      z-index: 1;
+      z-index:1;
     }
 
     .overlay{
@@ -66,7 +60,7 @@
       align-items:center;
       justify-content:center;
       text-align:center;
-      z-index: 2;
+      z-index:2;
     }
 
     .texto-apoio{
@@ -135,8 +129,7 @@
       color:#003a7a;
 
       box-shadow: 0 10px 22px rgba(0,0,0,.18);
-
-      z-index: 3; /* acima da overlay */
+      z-index:3;
     }
     .voltar:active{ transform: scale(0.99); }
   </style>
@@ -147,8 +140,8 @@
     <main class="tela" id="tela">
       <div class="bg" aria-hidden="true"></div>
 
-      <!-- ✅ sempre volta para toten.html -->
-      <a class="voltar" href="./toten.html">VOLTAR</a>
+      <!-- VOLTA GARANTIDO (N) -->
+      <a class="voltar" href="./toten.html" onclick="window.location.href='./toten.html'; return false;">VOLTAR</a>
 
       <section class="overlay">
         <p class="texto-apoio">Selecione uma graduação</p>
