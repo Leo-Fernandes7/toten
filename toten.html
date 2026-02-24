@@ -14,7 +14,6 @@
     html,body{height:100%}
 
     body{
-      /* IMPORTANTE: isso evita aparecer borda escura quando o SCALE não ocupa 100% */
       background:#2b57a7;
       overflow:hidden;
       -webkit-tap-highlight-color:transparent;
@@ -39,7 +38,6 @@
       background:#2b57a7;
     }
 
-    /* FUNDO ENCOSTANDO NAS BORDAS */
     .bg{
       position:absolute;
       inset:0;
@@ -50,12 +48,13 @@
       z-index:1;
     }
 
+    /* Ajustei um pouco o padding pra caber os botões maiores sem encostar no rodapé */
     .overlay{
       position:absolute;
       inset:0;
       z-index:2;
       color:#fff;
-      padding: 560px 120px 520px;
+      padding: 520px 120px 470px; /* antes: 560px 120px 520px */
       display:flex;
       flex-direction:column;
       align-items:center;
@@ -63,19 +62,21 @@
       text-align:center;
     }
 
+    /* "Toque na opção desejada e" maior */
     .texto-apoio{
-      font-size: 30px;
+      font-size: 52px; /* antes: 42px */
       opacity: .95;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
       text-shadow: 0 6px 16px rgba(0,0,0,.25);
     }
 
+    /* "descubra mais:" maior */
     .titulo{
       font-family: Montserrat, Inter, Arial, sans-serif;
-      font-size: 64px;
+      font-size: 96px; /* antes: 78px */
       font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 22px;
+      line-height: 1.03;
+      margin-bottom: 34px;
       text-shadow: 0 10px 20px rgba(0,0,0,.22);
     }
 
@@ -84,20 +85,21 @@
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 26px;
+      gap: 34px; /* antes: 28px */
       margin-top: 6px;
     }
 
+    /* BOTÕES mais altos + mais largos + fonte maior */
     .botao{
-      width: 900px;
-      padding: 24px 22px;
-      border-radius: 20px;
+      width: 980px;        /* antes: 960px */
+      padding: 46px 28px;  /* antes: 34px 26px */
+      border-radius: 28px; /* antes: 24px */
       text-decoration:none;
 
       font-family: Montserrat, Inter, Arial, sans-serif;
-      font-size: 34px;
+      font-size: 48px;     /* antes: 42px */
       font-weight: 800;
-      letter-spacing: .6px;
+      letter-spacing: .8px;
 
       display:flex;
       align-items:center;
@@ -125,10 +127,25 @@
         <nav class="menu">
           <a class="botao roxo" href="graduacoes.html">GRADUAÇÕES</a>
           <a class="botao azul" href="pos.html">PÓS-GRADUAÇÕES</a>
-          <a class="botao roxo" href="cursos-livres.html">CURSOS LIVRES</a>
+
+          <!-- EXTERNO: CURSOS LIVRES -->
+          <a class="botao roxo"
+             href="https://www.senacrs.com.br/unisenac/8d0ded17-fd8e-4d8d-8b1c-cacbf8c65a36"
+             target="_blank"
+             rel="noopener noreferrer">
+            CURSOS LIVRES
+          </a>
+
           <a class="botao azul" href="cursos-gratuitos.html">CURSOS GRATUITOS</a>
           <a class="botao roxo" href="unidades.html">CONHEÇA AS UNIDADES</a>
-          <a class="botao azul" href="escola-senac.html">ESCOLA SENAC</a>
+
+          <!-- EXTERNO: ESCOLA SENAC -->
+          <a class="botao azul"
+             href="https://www.senacrs.com.br/escola/cdbb6fe7-fdc7-4388-8bf6-03ae01d1675f"
+             target="_blank"
+             rel="noopener noreferrer">
+            ESCOLA SENAC
+          </a>
         </nav>
       </section>
     </main>
@@ -145,4 +162,3 @@
   </script>
 </body>
 </html>
-
