@@ -11,7 +11,7 @@ body{
   overflow:hidden;
 }
 
-/* TELA TOTEM 1080x1920 */
+
 .tela{
   width:1080px;
   height:1920px;
@@ -23,16 +23,16 @@ body{
   text-align:center;
 }
 
-/* ÁREA CENTRAL (onde ficam texto + botões) */
+
 .overlay{
   width:100%;
-  padding: 420px 80px 260px; /* “como antes”: dá respiro pro topo e pro rodapé do fundo */
+  padding: 420px 80px 260px; 
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* TEXTOS */
+
 .texto-apoio{
   color:#ffffff;
   font-size:34px;
@@ -97,5 +97,6 @@ body{
   font-size:26px;
   box-shadow:0 8px 18px rgba(0,0,0,.25);
 }
+
 
 .voltar:active{ transform:scale(0.99); }
