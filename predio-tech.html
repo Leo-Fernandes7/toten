@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Prédio Félix da Cunha</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      background:#2b57a7;
+      overflow:hidden;
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
+    }
+
+    .stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;}
+    .tela{
+      width:1080px;height:1920px;
+      position:relative;overflow:hidden;
+      transform-origin:center;
+      background:#2b57a7;
+    }
+
+    .bg{
+      position:absolute;inset:0;z-index:0;
+      background-image:url("./img/fundo.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    .viewport{
+      position:absolute;inset:0;z-index:1;
+      overflow:hidden;
+      background:transparent;
+      touch-action:none;
+    }
+
+    .track{
+      height:100%;
+      display:flex;
+      will-change:transform;
+      transform: translate3d(0,0,0);
+      transition: transform 280ms ease;
+    }
+
+    .slide{
+      width:1080px;height:1920px;
+      flex:0 0 1080px;
+      background:transparent;
+    }
+
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background:transparent;
+      -webkit-user-drag:none;
+      user-select:none;
+      pointer-events:none;
+    }
+
+    .mensagem{
+      position:absolute;
+      left:0; right:0;
+      top: 320px;
+      z-index:4;
+      text-align:center;
+      color:#fff;
+      padding: 0 120px;
+      pointer-events:none;
+    }
+
+    .texto-apoio{
+      font-size: 30px;
+      opacity: .95;
+      margin-bottom: 10px;
+      text-shadow: 0 6px 16px rgba(0,0,0,.25);
+    }
+
+    .titulo{
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.05;
+      text-shadow: 0 10px 20px rgba(0,0,0,.22);
+    }
+
+    .hint-band{
+      position:absolute;
+      top:0; left:0;
+      width:100%;
+      height:140px;
+      z-index:6;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(6px);
+
+      opacity:0;
+      transition: opacity .35s ease;
+      pointer-events:none;
+    }
+    .hint-band.show{ opacity:1; }
+
+    .hint-text{
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: .2px;
+      color:#fff;
+      text-shadow: 0 10px 18px rgba(0,0,0,.25);
+    }
+
+    .nav-arrow{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      z-index:5;
+
+      width:110px;height:180px;
+      border-radius:22px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      background: rgba(0,0,0,.20);
+      backdrop-filter: blur(6px);
+      color:#fff;
+
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 86px;
+      font-weight: 900;
+
+      border:none;
+      cursor:pointer;
+      transition: transform .08s ease, opacity .2s ease;
+      opacity:.95;
+    }
+    .nav-arrow:active{ transform: translateY(-50%) scale(0.98); }
+    .nav-left{ left:28px; }
+    .nav-right{ right:28px; }
+
+    .dots{
+      position:absolute;
+      left:50%;
+      bottom:220px;
+      transform: translateX(-50%);
+      display:flex;
+      gap:12px;
+      z-index:3;
+
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(6px);
+    }
+    .dot{
+      width:12px;height:12px;border-radius:999px;
+      background: rgba(255,255,255,.55);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .dot.active{ background: rgba(255,255,255,.95); transform: scale(1.25); }
+
+    .voltar{
+      position:absolute;
+      left:90px;
+      bottom:300px;
+      z-index:7;
+
+      text-decoration:none;
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size:34px;
+      font-weight:800;
+
+      padding:20px 28px;
+      border-radius:18px;
+
+      background: rgba(215,230,255,.35);
+      color:#fff;
+      border: 2px solid rgba(255,255,255,.55);
+
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      backdrop-filter: blur(6px);
+      transition: transform .06s ease;
+    }
+    .voltar:active{ transform: scale(0.99); }
+  </style>
+</head>
+
+<body>
+  <div class="stage">
+    <main class="tela" id="tela">
+      <div class="bg" aria-hidden="true"></div>
+
+      <a class="voltar" href="./unidades.html" onclick="window.location.href='./unidades.html'; return false;">VOLTAR</a>
+
+      <div class="viewport" id="viewport" aria-label="Galeria de fotos">
+        <div class="track" id="track"></div>
+      </div>
+
+      <div class="mensagem">
+        <p class="texto-apoio">UniSenac Campus - Pelotas</p>
+        <h1 class="titulo">Prédio Felix da Cunha, 520</h1>
+      </div>
+
+      <div class="hint-band" id="hintBand">
+        <div class="hint-text">Arraste para o lado ⇆</div>
+      </div>
+
+      <button class="nav-arrow nav-left" id="prevBtn" aria-label="Foto anterior">‹</button>
+      <button class="nav-arrow nav-right" id="nextBtn" aria-label="Próxima foto">›</button>
+
+      <div class="dots" id="dots" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script>
+    const fotos = [
+      "./img/tech-01.jpg",
+      "./img/tech-02.jpg",
+      "./img/tech-03.jpg",
+      "./img/tech-04.jpg",
+      "./img/tech-05.jpg"
+      
+    ];
+
+    const AUTO_MS = 6000;
+    let autoTimer = null;
+
+    const track = document.getElementById("track");
+    const dotsEl = document.getElementById("dots");
+    const viewport = document.getElementById("viewport");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const hintBand = document.getElementById("hintBand");
+
+    let index = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    const W = 1080;
+
+    function renderSlides(){
+      track.innerHTML = "";
+      dotsEl.innerHTML = "";
+
+      fotos.forEach((src, i) => {
+        const slide = document.createElement("div");
+        slide.className = "slide";
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Foto ${i+1}`;
+        slide.appendChild(img);
+
+        track.appendChild(slide);
+
+        const dot = document.createElement("div");
+        dot.className = "dot" + (i === index ? " active" : "");
+        dotsEl.appendChild(dot);
+      });
+
+      applyTranslate(-index * W, true);
+      updateDots();
+      updateNavVisibility();
+    }
+
+    function updateDots(){
+      dotsEl.querySelectorAll(".dot")
+        .forEach((d, i) => d.classList.toggle("active", i === index));
+    }
+
+    function updateNavVisibility(){
+      const show = fotos.length > 1;
+      prevBtn.style.display = show ? "flex" : "none";
+      nextBtn.style.display = show ? "flex" : "none";
+      dotsEl.style.display  = show ? "flex" : "none";
+    }
+
+    function clampIndex(i){
+      return Math.max(0, Math.min(fotos.length - 1, i));
+    }
+
+    function applyTranslate(px, withTransition){
+      track.style.transition = withTransition ? "transform 280ms ease" : "none";
+      track.style.transform = `translate3d(${px}px,0,0)`;
+    }
+
+    function goTo(i){
+      index = clampIndex(i);
+      applyTranslate(-index * W, true);
+      updateDots();
+    }
+
+    function stopAuto(){
+      if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+    }
+
+    function startAuto(){
+      stopAuto();
+      if(fotos.length <= 1) return;
+      autoTimer = setInterval(() => goTo((index + 1) % fotos.length), AUTO_MS);
+    }
+
+    function restartAutoSoon(){
+      stopAuto();
+      if(fotos.length <= 1) return;
+      setTimeout(startAuto, 1200);
+    }
+
+    function pointerDown(clientX){
+      if(fotos.length <= 1) return;
+      isDragging = true;
+      startX = clientX;
+      currentX = clientX;
+      track.style.transition = "none";
+      stopAuto();
+    }
+
+    function pointerMove(clientX){
+      if(!isDragging) return;
+      currentX = clientX;
+      const dx = currentX - startX;
+
+      let damp = 1;
+      if((index === 0 && dx > 0) || (index === fotos.length - 1 && dx < 0)){
+        damp = 0.35;
+      }
+      applyTranslate((-index * W) + dx * damp, false);
+    }
+
+    function pointerUp(){
+      if(!isDragging) return;
+      isDragging = false;
+
+      const dx = currentX - startX;
+      const threshold = 140;
+
+      if(dx < -threshold) goTo(index + 1);
+      else if(dx > threshold) goTo(index - 1);
+      else goTo(index);
+
+      restartAutoSoon();
+    }
+
+    viewport.addEventListener("touchstart", (e) => {
+      if(e.touches.length !== 1) return;
+      pointerDown(e.touches[0].clientX);
+    }, {passive:true});
+
+    viewport.addEventListener("touchmove", (e) => {
+      if(!isDragging) return;
+      e.preventDefault();
+      pointerMove(e.touches[0].clientX);
+    }, {passive:false});
+
+    viewport.addEventListener("touchend", () => pointerUp(), {passive:true});
+    viewport.addEventListener("touchcancel", () => pointerUp(), {passive:true});
+
+    viewport.addEventListener("mousedown", (e) => pointerDown(e.clientX));
+    window.addEventListener("mousemove", (e) => pointerMove(e.clientX));
+    window.addEventListener("mouseup", () => pointerUp());
+
+    prevBtn.addEventListener("click", () => { stopAuto(); goTo(index - 1); restartAutoSoon(); });
+    nextBtn.addEventListener("click", () => { stopAuto(); goTo(index + 1); restartAutoSoon(); });
+
+    function showHintFor3s(){
+      hintBand.classList.add("show");
+      setTimeout(() => hintBand.classList.remove("show"), 3000);
+    }
+
+    function fitToten(){
+      const tela = document.getElementById("tela");
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+      tela.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener("resize", fitToten);
+
+    renderSlides();
+    showHintFor3s();
+    startAuto();
+    fitToten();
+  </script>
+</body>
+</html>

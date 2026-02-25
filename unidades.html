@@ -1,19 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Unidades</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Conheça as Unidades</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    body{
+      background:#2b57a7;
+      overflow:hidden;
+      -webkit-tap-highlight-color:transparent;
+      user-select:none;
+      font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
+    }
+
+    .stage{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .tela{
+      width:1080px;
+      height:1920px;
+      position:relative;
+      overflow:hidden;
+      transform-origin:center;
+      background:#2b57a7;
+    }
+
+    .bg{
+      position:absolute;
+      inset:0;
+      background-image:url("./img/fundo.png");
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      z-index:1;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      color:#fff;
+      padding: 520px 120px 470px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .texto-apoio{
+      font-size: 52px;
+      opacity:.95;
+      margin-bottom: 14px;
+      text-shadow: 0 6px 16px rgba(0,0,0,.25);
+    }
+
+    .titulo{
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 96px;
+      font-weight: 900;
+      line-height: 1.03;
+      margin-bottom: 34px;
+      text-shadow: 0 10px 20px rgba(0,0,0,.22);
+    }
+
+    .menu{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 34px;
+      margin-top: 6px;
+    }
+
+    .botao{
+      width: 980px;
+      padding: 46px 28px;
+      border-radius: 28px;
+      text-decoration:none;
+
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: .6px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      transition: transform .06s ease;
+      text-align:center;
+      line-height: 1.15;
+    }
+    .botao:active{ transform: scale(0.992); }
+
+    .roxo{ background:#8f96ea; color:#ffffff; }
+    .azul{ background:#d7e6ff; color:#003a7a; }
+
+    .voltar{
+      position:absolute;
+      left: 90px;
+      bottom: 300px;
+      text-decoration:none;
+
+      font-family: Montserrat, Inter, Arial, sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+
+      padding: 20px 28px;
+      border-radius: 18px;
+
+      background: rgba(215,230,255,.85);
+      color:#003a7a;
+
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      z-index:3;
+      transition: transform .06s ease;
+    }
+    .voltar:active{ transform: scale(0.99); }
+  </style>
 </head>
+
 <body>
+  <div class="stage">
+    <main class="tela" id="tela">
+      <div class="bg" aria-hidden="true"></div>
 
-<div class="tela" style="padding-top:120px;">
+      <a class="voltar" href="./toten.html" onclick="window.location.href='./toten.html'; return false;">VOLTAR</a>
 
-<img src="unidades.png" alt="Unidades" style="width:80%; border-radius:25px;">
+      <section class="overlay">
+        <p class="texto-apoio">Selecione um prédio</p>
+        <h1 class="titulo">para ver:</h1>
 
-<a href="toten.html" class="botao roxo voltar">VOLTAR</a>
+        <nav class="menu">
+          <a class="botao roxo" href="./predio-goncalves-chaves.html">PRÉDIO GONÇALVES CHAVES</a>
+          <a class="botao azul" href="./predio-tech.html">PRÉDIO TECH</a>
+        </nav>
+      </section>
+    </main>
+  </div>
 
-</div>
-
+  <script>
+    function fitToten(){
+      const tela = document.getElementById('tela');
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+      tela.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fitToten);
+    fitToten();
+  </script>
 </body>
 </html>
