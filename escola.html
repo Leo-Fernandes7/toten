@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>UniSenac</title>
+  <title>Escola Senac Pelotas</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 
 <body>
   <div class="stage">
-    <main class="tela tela-unisenac" id="tela">
+    <main class="tela" id="tela">
       <div class="bg" aria-hidden="true"></div>
 
       <a class="voltar voltar-transparente" href="./toten.html" onclick="window.location.href='./toten.html'; return false;">VOLTAR</a>
@@ -23,7 +23,8 @@
       </div>
 
       <div class="mensagem">
-  
+        <p class="texto-apoio">Conheça nossa</p>
+        <h1 class="titulo">escola</h1>
       </div>
 
       <div class="info-inferior">
@@ -34,9 +35,6 @@
             <p class="endereco-linha">(53) 3225.8889</p>
             <p class="endereco-linha">(53) 98464.5683</p>
           </div>
-            
-            
-          </div>
         </div>
 
         <div class="qr-area">
@@ -46,6 +44,7 @@
       </div>
 
       <div class="hint-band" id="hintBand">
+        <div class="hint-text">Arraste para o lado ⇆</div>
       </div>
 
       <button class="nav-arrow nav-left" id="prevBtn" aria-label="Foto anterior">‹</button>
@@ -64,9 +63,7 @@
       "./img/escola04.png",
       "./img/escola5.png",
       "./img/escola6.png",
-      "./img/escola7.png",
-      
-      
+      "./img/escola7.png"
     ];
 
     const AUTO_MS = 6000;
@@ -111,8 +108,9 @@
     }
 
     function updateDots(){
-      dotsEl.querySelectorAll(".dot")
-        .forEach((d, i) => d.classList.toggle("active", i === index));
+      dotsEl.querySelectorAll(".dot").forEach((d, i) => {
+        d.classList.toggle("active", i === index);
+      });
     }
 
     function updateNavVisibility(){
