@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>UniSenac</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="stage">
+    <main class="tela tela-unisenac" id="tela">
+      <div class="bg" aria-hidden="true"></div>
+
+      <a class="voltar voltar-transparente" href="./toten.html" onclick="window.location.href='./toten.html'; return false;">VOLTAR</a>
+
+      <div class="viewport" id="viewport" aria-label="Galeria de fotos">
+        <div class="track" id="track"></div>
+      </div>
+
+      <div class="mensagem">
+        <p class="texto-apoio">Conheça nossos</p>
+        <h1 class="titulo">prédios</h1>
+      </div>
+
+      <div class="info-inferior">
+        <div class="enderecos">
+          <div class="endereco-bloco">
+            <h2 class="endereco-titulo">Escola Senac Pelotas</h2>
+            <p class="endereco-linha">Rua Dom Pedro II, 901</p>
+            <p class="endereco-linha">(53) 3225.8889</p>
+            <p class="endereco-linha">(53) 98464.5683</p>
+          </div>
+
+          <div class="endereco-bloco">
+            <h2 class="endereco-titulo"></h2>
+            <p class="endereco-linha"></p>
+            <p class="endereco-linha"></p>
+          </div>
+        </div>
+
+        <div class="qr-area">
+          <p class="qr-texto">Nos siga no Instagram!</p>
+          <img class="qr-img" src="./img/qrcode.png" alt="QR Code Instagram">
+        </div>
+      </div>
+
+      <div class="hint-band" id="hintBand">
+        <div class="hint-text">Arraste para o lado ⇆</div>
+      </div>
+
+      <button class="nav-arrow nav-left" id="prevBtn" aria-label="Foto anterior">‹</button>
+      <button class="nav-arrow nav-right" id="nextBtn" aria-label="Próxima foto">›</button>
+
+      <div class="dots" id="dots" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script>
+    const fotos = [
+      "./img/unisenac01.png",
+      "./img/escola2.png",
+      "./img/escola3.png",
+      "./img/escola04.png",
+      "./img/escola5.png",
+      "./img/escola6.png",
+      "./img/escola7.png",
+      
+      
+    ];
+
+    const AUTO_MS = 6000;
+    let autoTimer = null;
+
+    const track = document.getElementById("track");
+    const dotsEl = document.getElementById("dots");
+    const viewport = document.getElementById("viewport");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const hintBand = document.getElementById("hintBand");
+
+    let index = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    const W = 1080;
+
+    function renderSlides(){
+      track.innerHTML = "";
+      dotsEl.innerHTML = "";
+
+      fotos.forEach((src, i) => {
+        const slide = document.createElement("div");
+        slide.className = "slide";
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = `Foto ${i + 1}`;
+        slide.appendChild(img);
+
+        track.appendChild(slide);
+
+        const dot = document.createElement("div");
+        dot.className = "dot" + (i === index ? " active" : "");
+        dotsEl.appendChild(dot);
+      });
+
+      applyTranslate(-index * W, true);
+      updateDots();
+      updateNavVisibility();
+    }
+
+    function updateDots(){
+      dotsEl.querySelectorAll(".dot")
+        .forEach((d, i) => d.classList.toggle("active", i === index));
+    }
+
+    function updateNavVisibility(){
+      const show = fotos.length > 1;
+      prevBtn.style.display = show ? "flex" : "none";
+      nextBtn.style.display = show ? "flex" : "none";
+      dotsEl.style.display = show ? "flex" : "none";
+    }
+
+    function clampIndex(i){
+      return Math.max(0, Math.min(fotos.length - 1, i));
+    }
+
+    function applyTranslate(px, withTransition){
+      track.style.transition = withTransition ? "transform 280ms ease" : "none";
+      track.style.transform = `translate3d(${px}px,0,0)`;
+    }
+
+    function goTo(i){
+      index = clampIndex(i);
+      applyTranslate(-index * W, true);
+      updateDots();
+    }
+
+    function stopAuto(){
+      if(autoTimer){
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAuto(){
+      stopAuto();
+      if(fotos.length <= 1) return;
+      autoTimer = setInterval(() => {
+        goTo((index + 1) % fotos.length);
+      }, AUTO_MS);
+    }
+
+    function restartAutoSoon(){
+      stopAuto();
+      if(fotos.length <= 1) return;
+      setTimeout(startAuto, 1200);
+    }
+
+    function pointerDown(clientX){
+      if(fotos.length <= 1) return;
+      isDragging = true;
+      startX = clientX;
+      currentX = clientX;
+      track.style.transition = "none";
+      stopAuto();
+    }
+
+    function pointerMove(clientX){
+      if(!isDragging) return;
+      currentX = clientX;
+      const dx = currentX - startX;
+
+      let damp = 1;
+      if((index === 0 && dx > 0) || (index === fotos.length - 1 && dx < 0)){
+        damp = 0.35;
+      }
+
+      applyTranslate((-index * W) + dx * damp, false);
+    }
+
+    function pointerUp(){
+      if(!isDragging) return;
+      isDragging = false;
+
+      const dx = currentX - startX;
+      const threshold = 140;
+
+      if(dx < -threshold) goTo(index + 1);
+      else if(dx > threshold) goTo(index - 1);
+      else goTo(index);
+
+      restartAutoSoon();
+    }
+
+    viewport.addEventListener("touchstart", (e) => {
+      if(e.touches.length !== 1) return;
+      pointerDown(e.touches[0].clientX);
+    }, { passive: true });
+
+    viewport.addEventListener("touchmove", (e) => {
+      if(!isDragging) return;
+      e.preventDefault();
+      pointerMove(e.touches[0].clientX);
+    }, { passive: false });
+
+    viewport.addEventListener("touchend", () => pointerUp(), { passive: true });
+    viewport.addEventListener("touchcancel", () => pointerUp(), { passive: true });
+
+    viewport.addEventListener("mousedown", (e) => pointerDown(e.clientX));
+    window.addEventListener("mousemove", (e) => pointerMove(e.clientX));
+    window.addEventListener("mouseup", () => pointerUp());
+
+    prevBtn.addEventListener("click", () => {
+      stopAuto();
+      goTo(index - 1);
+      restartAutoSoon();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      stopAuto();
+      goTo(index + 1);
+      restartAutoSoon();
+    });
+
+    function showHintFor3s(){
+      hintBand.classList.add("show");
+      setTimeout(() => hintBand.classList.remove("show"), 3000);
+    }
+
+    function fitToten(){
+      const tela = document.getElementById("tela");
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+      tela.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener("resize", fitToten);
+
+    renderSlides();
+    showHintFor3s();
+    startAuto();
+    fitToten();
+  </script>
+</body>
+</html>
