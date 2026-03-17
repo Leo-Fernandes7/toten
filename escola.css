@@ -21,7 +21,7 @@
 .tela-escola .bg{
   position:absolute;
   inset:0;
-  background-image:url("img/fundo.png");
+  background-image:url("/toten/img/fundo.png?v=3");
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
