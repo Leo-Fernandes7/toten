@@ -123,20 +123,20 @@
 
 .tela-escola .endereco-titulo{
   font-family: Montserrat, Inter, Arial, sans-serif;
-  font-size:24px;
+  font-size:28px;
   font-weight:800;
   line-height:1.1;
   color:#fff;
 }
 
 .tela-escola .endereco-linha{
-  font-size:18px;
+  font-size:20px;
   line-height:1.2;
   color:#fff;
 }
 
 .tela-escola .qr-area{
-  width:150px;
+  width:140px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -154,8 +154,8 @@
 }
 
 .tela-escola .qr-img{
-  width:108px;
-  height:108px;
+  width:115px;
+  height:115px;
   object-fit:contain;
   background:#fff;
   padding:6px;
@@ -186,7 +186,7 @@
 
 .tela-escola .hint-text{
   font-family: Montserrat, Inter, Arial, sans-serif;
-  font-size:36px;
+  font-size:40px;
   font-weight:900;
   color:#fff;
   text-shadow:0 10px 18px rgba(0,0,0,.25);
