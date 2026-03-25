@@ -24,41 +24,48 @@
     <video id="vid" playsinline loop preload="auto">
       <source src="videos/redes.mp4" type="video/mp4">
     </video>
-
     <div class="controls" id="controls">
       <button class="btn play" id="btnPlay" aria-label="Reproduzir"><span>▶</span></button>
       <a class="btn voltar" href="graduacoes.html" id="btnVoltar">VOLTAR</a>
     </div>
   </div>
-
   <script>
-    const video=document.getElementById("vid");
-    const controls=document.getElementById("controls");
-    const btnPlay=document.getElementById("btnPlay");
-    const HIDE_MS=3000;
-    let hideTimer=null;
+    const video    = document.getElementById("vid");
+    const controls = document.getElementById("controls");
+    const btnPlay  = document.getElementById("btnPlay");
+    const HIDE_MS  = 3000;
+    let hideTimer  = null;
 
-    function showControls(){controls.classList.remove("hidden"); resetHideTimer();}
-    function hideControls(){controls.classList.add("hidden");}
-    function resetHideTimer(){
+    function showControls() { controls.classList.remove("hidden"); resetHideTimer(); }
+    function hideControls()  { controls.classList.add("hidden"); }
+    function resetHideTimer() {
       clearTimeout(hideTimer);
-      hideTimer=setTimeout(()=>{ if(!video.paused) hideControls(); }, HIDE_MS);
+      hideTimer = setTimeout(() => { if (!video.paused) hideControls(); }, HIDE_MS);
     }
 
-    async function startWithSound(){
-      try{
-        video.muted=false; video.volume=1;
+    async function startWithSound() {
+      try {
+        video.muted  = false;
+        video.volume = 1;
         await video.play();
-        btnPlay.style.display="none";
+        btnPlay.style.display = "none";
         resetHideTimer();
-      }catch(e){
-        btnPlay.style.display="flex";
+      } catch(e) {
+        btnPlay.style.display = "flex";
       }
     }
 
-    btnPlay.addEventListener("click",(e)=>{e.stopPropagation(); startWithSound();});
-    ["mousemove","mousedown","touchstart","touchmove","keydown"].forEach(evt=>{
-      document.addEventListener(evt, showControls, {passive:true});
+    function handlePlay(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      startWithSound();
+    }
+
+    btnPlay.addEventListener("touchstart", handlePlay, { passive: false });
+    btnPlay.addEventListener("click",      handlePlay);
+
+    ["mousemove","mousedown","touchstart","touchmove","keydown"].forEach(evt => {
+      document.addEventListener(evt, showControls, { passive: true });
     });
 
     showControls();
