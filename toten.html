@@ -109,7 +109,6 @@
     .roxo{ background:#8f96ea; color:#ffffff; }
     .azul{ background:#d7e6ff; color:#003a7a; }
 
-    /* BOTÃO FLUTUANTE MELHORADO */
     #botaoFlutuante{
       position:fixed;
       top:100px;
@@ -180,6 +179,16 @@
     .img-topo{ z-index:2; }
     .img-base{ z-index:1; }
 
+    #fecharOverlay{
+      position:absolute;
+      top:40px;
+      right:40px;
+      font-size:50px;
+      color:#fff;
+      z-index:10000;
+      cursor:pointer;
+    }
+
   </style>
 </head>
 
@@ -214,14 +223,13 @@
     </main>
   </div>
 
-  <!-- BOTÃO -->
   <button id="botaoFlutuante">
     <span class="icone">🩸</span>
     <div class="texto" id="textoArco"></div>
   </button>
 
-  <!-- OVERLAY -->
   <div id="overlayFlutuante">
+    <div id="fecharOverlay">✕</div>
     <div class="container-imagens">
       <img src="./img/imagem1.png" class="img-base">
       <img src="./img/imagem2.png" class="img-topo">
@@ -241,6 +249,7 @@
     const overlay = document.getElementById("overlayFlutuante");
     const imgBase = document.querySelector(".img-base");
     const imgTopo = document.querySelector(".img-topo");
+    const fechar = document.getElementById("fecharOverlay");
 
     let etapa = 0;
     let intervalo;
@@ -260,16 +269,26 @@
           imgTopo.style.display = "none";
           etapa = 1;
         }
-      }, 3000);
+      }, 180000);
     });
 
     overlay.addEventListener("click", () => {
+      if (etapa === 1) {
+        imgTopo.style.display = "block";
+        etapa = 2;
+      } else {
+        imgTopo.style.display = "none";
+        etapa = 1;
+      }
+    });
+
+    fechar.addEventListener("click", (e) => {
+      e.stopPropagation();
       overlay.style.display = "none";
       etapa = 0;
       clearInterval(intervalo);
     });
 
-    // TEXTO EM ARCO
     const texto = "DOE SANGUE";
     const containerTexto = document.getElementById("textoArco");
 
@@ -280,7 +299,6 @@
       containerTexto.appendChild(span);
     });
 
-    // ARRASTAR BOTÃO
     let isDragging = false;
     let offsetX, offsetY;
 
@@ -301,7 +319,6 @@
       isDragging = false;
     });
 
-    // TOUCH
     botao.addEventListener("touchstart", (e) => {
       isDragging = true;
       offsetX = e.touches[0].clientX - botao.offsetLeft;
