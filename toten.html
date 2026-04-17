@@ -109,27 +109,45 @@
     .roxo{ background:#8f96ea; color:#ffffff; }
     .azul{ background:#d7e6ff; color:#003a7a; }
 
-    /* BOTÃO FLUTUANTE ATUALIZADO */
+    /* BOTÃO REDONDO */
     #botaoFlutuante{
       position:fixed;
       bottom:40px;
       right:40px;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      border:none;
       background:#2b57a7;
       color:#fff;
-      border:none;
-      border-radius:50px;
-      padding:18px 26px;
       display:flex;
       align-items:center;
-      gap:10px;
-      font-size:22px;
-      font-weight:700;
+      justify-content:center;
       z-index:9999;
       box-shadow:0 8px 20px rgba(0,0,0,.3);
     }
 
     #botaoFlutuante .icone{
-      font-size:26px;
+      font-size:32px;
+      position:absolute;
+    }
+
+    #botaoFlutuante .texto{
+      position:absolute;
+      width:100%;
+      height:100%;
+      font-size:10px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    #botaoFlutuante .texto span{
+      position:absolute;
+      left:50%;
+      top:0;
+      transform-origin:0 45px;
     }
 
     #overlayFlutuante{
@@ -186,7 +204,6 @@
           <a class="botao azul" href="cursos-gratuitos.html">CURSOS GRATUITOS</a>
           <a class="botao roxo" href="unidades.html">CONHEÇA AS UNIDADES</a>
 
-          <!-- EXTERNO: ESCOLA SENAC -->
 <a class="botao azul" href="escola.html">
   ESCOLA SENAC
 </a>
@@ -196,10 +213,10 @@
     </main>
   </div>
 
-  <!-- BOTÃO FLUTUANTE -->
+  <!-- BOTÃO -->
   <button id="botaoFlutuante">
     <span class="icone">🩸</span>
-    <span class="texto">DOE SANGUE</span>
+    <div class="texto" id="textoArco"></div>
   </button>
 
   <!-- OVERLAY -->
@@ -227,6 +244,7 @@
     const imgTopo = document.querySelector(".img-topo");
 
     let etapa = 0;
+    let intervalo;
 
     if (!ATIVAR_BOTAO) {
       botao.style.display = "none";
@@ -237,16 +255,34 @@
       etapa = 1;
       imgBase.style.display = "block";
       imgTopo.style.display = "none";
+
+      clearInterval(intervalo);
+      intervalo = setInterval(() => {
+        if (etapa === 1) {
+          imgTopo.style.display = "block";
+          etapa = 2;
+        } else {
+          imgTopo.style.display = "none";
+          etapa = 1;
+        }
+      }, 3000);
     });
 
     overlay.addEventListener("click", () => {
-      if (etapa === 1) {
-        imgTopo.style.display = "block";
-        etapa = 2;
-      } else {
-        overlay.style.display = "none";
-        etapa = 0;
-      }
+      overlay.style.display = "none";
+      etapa = 0;
+      clearInterval(intervalo);
+    });
+
+    // TEXTO EM ARCO
+    const texto = "DOE SANGUE";
+    const containerTexto = document.getElementById("textoArco");
+
+    texto.split("").forEach((letra, i) => {
+      const span = document.createElement("span");
+      span.innerText = letra;
+      span.style.transform = `rotate(${i * 12}deg)`;
+      containerTexto.appendChild(span);
     });
   </script>
 </body>
