@@ -131,8 +131,8 @@ body{
   bottom:40px;
   right:40px;
 
-  width:180px;
-  height:180px;
+  width:155px;
+  height:155px;
 
   border-radius:50%;
   border:none;
@@ -155,7 +155,7 @@ body{
 /* ÍCONE CENTRAL */
 #botaoFlutuante .icone{
   position:absolute;
-  font-size:58px;
+  font-size:50px;
 }
 
 /* TEXTO EM ARCO */
@@ -164,7 +164,7 @@ body{
   width:100%;
   height:100%;
 
-  font-size:16px;
+  font-size:13px;
   font-weight:900;
 }
 
@@ -172,9 +172,9 @@ body{
 #botaoFlutuante .texto span{
   position:absolute;
   left:50%;
-  top:14px;
+  top:12px;
 
-  transform-origin:0 64px;
+  transform-origin:0 56px;
 }
 
 /* OVERLAY IMAGENS */
