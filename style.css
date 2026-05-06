@@ -103,13 +103,13 @@ body{
   position:fixed;
   bottom:40px;
   right:40px;
-  width:120px;
-  height:120px;
+  width:180px;
+  height:180px;
   border-radius:50%;
   border:none;
   background:#00000080;
   color:#fff;
-  font-size:33px;
+  font-size:40px;
   z-index:9999;
 }
 
