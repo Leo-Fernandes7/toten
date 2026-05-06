@@ -1,4 +1,3 @@
-```css id="b1ylw8"
 * {
   box-sizing: border-box;
   margin: 0;
@@ -132,8 +131,8 @@ body{
   bottom:40px;
   right:40px;
 
-  width:260px;
-  height:260px;
+  width:180px;
+  height:180px;
 
   border-radius:50%;
   border:none;
@@ -149,14 +148,14 @@ body{
 
   box-shadow:0 8px 20px rgba(0,0,0,.35);
 
-  /* ADICIONADO AQUI */
-  animation:pulsar 1.8s infinite;
+  /* PULSANDO */
+  animation:pulsar 1.8s infinite ease-in-out;
 }
 
 /* ÍCONE CENTRAL */
 #botaoFlutuante .icone{
   position:absolute;
-  font-size:80px;
+  font-size:58px;
 }
 
 /* TEXTO EM ARCO */
@@ -165,16 +164,17 @@ body{
   width:100%;
   height:100%;
 
-  font-size:22px;
+  font-size:16px;
   font-weight:900;
 }
 
+/* LETRAS */
 #botaoFlutuante .texto span{
   position:absolute;
   left:50%;
-  top:18px;
+  top:14px;
 
-  transform-origin:0 92px;
+  transform-origin:0 64px;
 }
 
 /* OVERLAY IMAGENS */
@@ -217,7 +217,7 @@ body{
   z-index:1;
 }
 
-
+/* ANIMAÇÃO PULSANTE */
 @keyframes pulsar {
 
   0%{
@@ -227,15 +227,12 @@ body{
 
   50%{
     transform:scale(1.08);
-    box-shadow:0 0 40px rgba(255,255,255,.45);
+    box-shadow:0 0 35px rgba(255,255,255,.35);
   }
 
   100%{
     transform:scale(1);
     box-shadow:0 8px 20px rgba(0,0,0,.35);
   }
-
-}
-```
 
 }
