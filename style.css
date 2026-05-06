@@ -116,26 +116,24 @@ body{
 
 /* BOTÃO FLUTUANTE */
 #botaoFlutuante{
-  position:fixed;
-  bottom:40px;
-  right:40px;
+  width:260px;
+  height:260px;
+}
 
-  width:250px;
-  height:250px;
+#botaoFlutuante .icone{
+  font-size:80px;
+}
 
-  border-radius:50%;
-  border:none;
+#botaoFlutuante .texto{
+  font-size:22px;
+  font-weight:900;
+}
 
-  background:#00000080;
-  color:#fff;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  z-index:9999;
-
-  box-shadow:0 8px 20px rgba(0,0,0,.35);
+#botaoFlutuante .texto span{
+  position:absolute;
+  left:50%;
+  top:18px;
+  transform-origin:0 92px;
 }
 
 /* ÍCONE CENTRAL */
