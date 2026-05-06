@@ -392,21 +392,27 @@
     });
 
     /* TEXTO EM ARCO */
-    const texto = "DOE SANGUE";
+const texto = "DOE SANGUE";
+const containerTexto = document.getElementById("textoArco");
 
-    const containerTexto = document.getElementById("textoArco");
+const anguloTotal = 120;
+const anguloInicial = -60;
 
-    texto.split("").forEach((letra, i) => {
+texto.split("").forEach((letra, i) => {
 
-      const span = document.createElement("span");
+  const span = document.createElement("span");
 
-      span.innerText = letra;
+  span.innerText = letra;
 
-      span.style.transform = `rotate(${i * 12}deg)`;
+  const angulo =
+    anguloInicial +
+    (i * (anguloTotal / (texto.length - 1)));
 
-      containerTexto.appendChild(span);
+  span.style.transform = `rotate(${angulo}deg)`;
 
-    });
+  containerTexto.appendChild(span);
+
+});
 
     /* DRAG DO BOTÃO */
     let isDragging = false;
