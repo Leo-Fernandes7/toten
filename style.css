@@ -1,3 +1,4 @@
+```css id="b1ylw8"
 * {
   box-sizing: border-box;
   margin: 0;
@@ -147,6 +148,9 @@ body{
   z-index:9999;
 
   box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+  /* ADICIONADO AQUI */
+  animation:pulsar 1.8s infinite;
 }
 
 /* ÍCONE CENTRAL */
@@ -211,4 +215,27 @@ body{
 
 .img-base{
   z-index:1;
+}
+
+
+@keyframes pulsar {
+
+  0%{
+    transform:scale(1);
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+
+  50%{
+    transform:scale(1.08);
+    box-shadow:0 0 40px rgba(255,255,255,.45);
+  }
+
+  100%{
+    transform:scale(1);
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+
+}
+```
+
 }
