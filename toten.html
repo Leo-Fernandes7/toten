@@ -1,29 +1,52 @@
 <!doctype html>
 <html lang="pt-br">
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+
   <title>Toten</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html,body{height:100%}
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html,
+    body{
+      height:100%;
+    }
 
     body{
       background:#2b57a7;
       overflow:hidden;
+
       -webkit-tap-highlight-color:transparent;
       user-select:none;
-      font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
+
+      font-family:Inter, system-ui, -apple-system, Arial, sans-serif;
     }
 
     .stage{
       position:fixed;
       inset:0;
+
       display:flex;
       align-items:center;
       justify-content:center;
@@ -32,81 +55,104 @@
     .tela{
       width:1080px;
       height:1920px;
+
       position:relative;
       overflow:hidden;
+
       transform-origin:center;
+
       background:#2b57a7;
     }
 
     .bg{
       position:absolute;
       inset:0;
+
       background-image:url("./img/fundo.png");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
+
       z-index:1;
     }
 
     .overlay{
       position:absolute;
       inset:0;
+
       z-index:2;
+
       color:#fff;
-      padding: 520px 120px 470px;
+
+      padding:520px 120px 470px;
+
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:center;
+
       text-align:center;
     }
 
     .texto-apoio{
-      font-size: 52px;
-      opacity: .95;
-      margin-bottom: 14px;
-      text-shadow: 0 6px 16px rgba(0,0,0,.25);
+      font-size:52px;
+      opacity:.95;
+
+      margin-bottom:14px;
+
+      text-shadow:0 6px 16px rgba(0,0,0,.25);
     }
 
     .titulo{
-      font-family: Montserrat, Inter, Arial, sans-serif;
-      font-size: 96px;
-      font-weight: 900;
-      line-height: 1.03;
-      margin-bottom: 34px;
-      text-shadow: 0 10px 20px rgba(0,0,0,.22);
+      font-family:Montserrat, Inter, Arial, sans-serif;
+
+      font-size:96px;
+      font-weight:900;
+      line-height:1.03;
+
+      margin-bottom:34px;
+
+      text-shadow:0 10px 20px rgba(0,0,0,.22);
     }
 
     .menu{
       width:100%;
+
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 34px;
-      margin-top: 6px;
+
+      gap:34px;
+
+      margin-top:6px;
     }
 
     .botao{
-      width: 980px;
-      padding: 46px 28px;
-      border-radius: 28px;
+      width:980px;
+
+      padding:46px 28px;
+
+      border-radius:28px;
+
       text-decoration:none;
 
-      font-family: Montserrat, Inter, Arial, sans-serif;
-      font-size: 48px;
-      font-weight: 800;
-      letter-spacing: .8px;
+      font-family:Montserrat, Inter, Arial, sans-serif;
+
+      font-size:48px;
+      font-weight:800;
+      letter-spacing:.8px;
 
       display:flex;
       align-items:center;
       justify-content:center;
 
-      box-shadow: 0 10px 22px rgba(0,0,0,.18);
-      transition: transform .06s ease;
+      box-shadow:0 10px 22px rgba(0,0,0,.18);
+
+      transition:transform .06s ease;
     }
 
     .botao:active{
-      transform: scale(0.992);
+      transform:scale(0.992);
     }
 
     .roxo{
@@ -120,13 +166,15 @@
     }
 
     /* BOTÃO FLUTUANTE */
+
     #botaoFlutuante{
       position:fixed;
+
       top:100px;
       left:40px;
 
-      width:500px;
-      height:500px;
+      width:260px;
+      height:260px;
 
       border-radius:50%;
       border:none;
@@ -149,38 +197,55 @@
       cursor:grabbing;
     }
 
+    /* ÍCONE */
+
     #botaoFlutuante .icone{
-      font-size:150px;
       position:absolute;
+      font-size:80px;
     }
+
+    /* TEXTO */
 
     #botaoFlutuante .texto{
       position:absolute;
+
       width:100%;
       height:100%;
-      font-size:42px;
-      font-weight:800;
+
+      font-size:22px;
+      font-weight:900;
     }
+
+    /* LETRAS */
 
     #botaoFlutuante .texto span{
       position:absolute;
+
       left:50%;
-      top:35px;
-      transform-origin:0 180px;
+      top:18px;
+
+      transform-origin:0 92px;
     }
+
+    /* OVERLAY */
 
     #overlayFlutuante{
       position:fixed;
       inset:0;
+
       display:none;
+
       justify-content:center;
       align-items:center;
+
       z-index:9998;
-      background: rgba(0,0,0,0.2);
+
+      background:rgba(0,0,0,0.2);
     }
 
     .container-imagens{
       position:relative;
+
       width:100%;
       height:100%;
     }
@@ -188,9 +253,12 @@
     .img-base,
     .img-topo{
       position:absolute;
+
       top:50%;
       left:50%;
+
       transform:translate(-50%, -50%);
+
       max-width:100%;
       max-height:100%;
     }
@@ -205,11 +273,15 @@
 
     #fecharOverlay{
       position:absolute;
+
       top:40px;
       right:40px;
+
       font-size:50px;
       color:#fff;
+
       z-index:10000;
+
       cursor:pointer;
     }
 
@@ -219,6 +291,7 @@
 <body>
 
   <div class="stage">
+
     <main class="tela" id="tela">
 
       <div class="bg"></div>
@@ -269,9 +342,11 @@
       </section>
 
     </main>
+
   </div>
 
   <!-- BOTÃO -->
+
   <button id="botaoFlutuante">
 
     <span class="icone">
@@ -283,6 +358,7 @@
   </button>
 
   <!-- OVERLAY -->
+
   <div id="overlayFlutuante">
 
     <div id="fecharOverlay">
@@ -392,29 +468,35 @@
     });
 
     /* TEXTO EM ARCO */
-const texto = "DOE SANGUE";
-const containerTexto = document.getElementById("textoArco");
 
-const anguloTotal = 120;
-const anguloInicial = -60;
+    const texto = "DOE SANGUE";
 
-texto.split("").forEach((letra, i) => {
+    const containerTexto =
+      document.getElementById("textoArco");
 
-  const span = document.createElement("span");
+    const anguloTotal = 120;
 
-  span.innerText = letra;
+    const anguloInicial = -60;
 
-  const angulo =
-    anguloInicial +
-    (i * (anguloTotal / (texto.length - 1)));
+    texto.split("").forEach((letra, i) => {
 
-  span.style.transform = `rotate(${angulo}deg)`;
+      const span = document.createElement("span");
 
-  containerTexto.appendChild(span);
+      span.innerText = letra;
 
-});
+      const angulo =
+        anguloInicial +
+        (i * (anguloTotal / (texto.length - 1)));
+
+      span.style.transform =
+        `rotate(${angulo}deg)`;
+
+      containerTexto.appendChild(span);
+
+    });
 
     /* DRAG DO BOTÃO */
+
     let isDragging = false;
 
     let offsetX, offsetY;
@@ -433,9 +515,11 @@ texto.split("").forEach((letra, i) => {
 
       if (isDragging){
 
-        botao.style.left = (e.clientX - offsetX) + "px";
+        botao.style.left =
+          (e.clientX - offsetX) + "px";
 
-        botao.style.top = (e.clientY - offsetY) + "px";
+        botao.style.top =
+          (e.clientY - offsetY) + "px";
       }
 
     });
@@ -450,9 +534,11 @@ texto.split("").forEach((letra, i) => {
 
       isDragging = true;
 
-      offsetX = e.touches[0].clientX - botao.offsetLeft;
+      offsetX =
+        e.touches[0].clientX - botao.offsetLeft;
 
-      offsetY = e.touches[0].clientY - botao.offsetTop;
+      offsetY =
+        e.touches[0].clientY - botao.offsetTop;
 
     });
 
