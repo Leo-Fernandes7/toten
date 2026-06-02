@@ -91,15 +91,15 @@ body{
   box-shadow:0 10px 22px rgba(0,0,0,.25);
 }
 
-.verde{
-  background: rgb(0, 128, 55);
-  color: rgb(255, 255, 255);
+.roxo{
+  background:#009c3b;
+  color:#ffffff;
 }
 
-.verde-claro{
-  background: rgb(220, 245, 228);
-  color: rgb(0, 90, 40);
-
+.azul{
+  background:#d2f4dc;
+  color:#006426;
+}
 /* VOLTAR */
 .voltar{
   position:absolute;
