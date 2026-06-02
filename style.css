@@ -92,11 +92,13 @@ body{
 }
 
 .roxo{
-  background:red !important;
+  background:#009c3b;
+  color:#ffffff;
 }
 
 .azul{
-  background:yellow !important;
+  background:#d2f4dc;
+  color:#006426;
 }
 /* VOLTAR */
 .voltar{
