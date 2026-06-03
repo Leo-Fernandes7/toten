@@ -38,7 +38,7 @@ body{
   align-items:center;
 }
 
-/* TEXTOS */
+
 .texto-apoio{
   color:#ffffff;
   font-size:34px;
@@ -68,7 +68,7 @@ body{
   text-decoration-thickness:6px;
 }
 
-/* BOTÕES */
+
 .menu{
   width:100%;
   display:flex;
@@ -100,7 +100,7 @@ body{
   background:#d2f4dc;
   color:#006426;
 }
-/* VOLTAR */
+
 .voltar{
   position:absolute;
   left:50px;
@@ -124,7 +124,7 @@ body{
   transform:scale(0.99);
 }
 
-/* BOTÃO FLUTUANTE */
+
 #botaoFlutuante{
   position:fixed;
   bottom:40px;
@@ -147,17 +147,17 @@ body{
 
   box-shadow:0 8px 20px rgba(0,0,0,.35);
 
-  /* PULSANDO */
+  
   animation:pulsar 1.8s infinite ease-in-out;
 }
 
-/* ÍCONE CENTRAL */
+
 #botaoFlutuante .icone{
   position:absolute;
   font-size:50px;
 }
 
-/* TEXTO EM ARCO */
+
 #botaoFlutuante .texto{
   position:absolute;
   width:100%;
@@ -167,7 +167,7 @@ body{
   font-weight:900;
 }
 
-/* LETRAS */
+
 #botaoFlutuante .texto span{
   position:absolute;
   left:50%;
@@ -176,7 +176,7 @@ body{
   transform-origin:0 56px;
 }
 
-/* OVERLAY IMAGENS */
+
 #overlayFlutuante{
   position:fixed;
   inset:0;
@@ -216,7 +216,7 @@ body{
   z-index:1;
 }
 
-/* ANIMAÇÃO PULSANTE */
+
 @keyframes pulsar {
 
   0%{
