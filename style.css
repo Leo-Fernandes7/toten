@@ -4,94 +4,113 @@
   padding: 0;
 }
 
-html,
-body {
+html, body {
   height: 100%;
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Inter, system-ui, -apple-system, Arial, sans-serif;
   background: #2b57a7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
-/* TELA TOTEM 1080x1920 */
+.stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .tela {
   width: 1080px;
   height: 1920px;
-  background: url("./img/fundo.png") center/cover no-repeat;
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  overflow: hidden;
+  transform-origin: center;
+  background: #2b57a7;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("./img/fundo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .overlay {
-  width: 100%;
-  padding: 320px 80px 260px;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  color: #fff;
+  padding: 520px 120px 470px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .texto-apoio {
-  color: #ffffff;
-  font-size: 34px;
+  font-size: 52px;
   opacity: .95;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
+  text-shadow: 0 6px 16px rgba(0,0,0,.25);
 }
 
 .titulo {
-  color: #ffffff;
-  font-size: 76px;
+  font-family: Montserrat, Inter, Arial, sans-serif;
+  font-size: 96px;
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.03;
   margin-bottom: 34px;
-  text-decoration: underline;
-  text-underline-offset: 14px;
-  text-decoration-thickness: 6px;
-}
-
-.titulo span {
-  display: block;
-  font-size: 52px;
-  margin-top: 6px;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 6px;
+  text-shadow: 0 10px 20px rgba(0,0,0,.22);
 }
 
 .menu {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 26px;
   align-items: center;
+  gap: 34px;
+  margin-top: 6px;
 }
 
 .botao {
-  width: 90%;
-  padding: 26px 24px;
-  border-radius: 18px;
+  width: 980px;
+  padding: 46px 28px;
+  border-radius: 28px;
   text-decoration: none;
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: .5px;
-  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+  font-family: Montserrat, Inter, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: .8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  transition: transform .06s ease;
 }
 
+.botao:active {
+  transform: scale(0.992);
+}
+
+/* Azul médio — texto branco */
 .roxo {
-  background: #7c3aed;
+  background: #5b8dd9;
   color: #ffffff;
 }
 
+/* Azul bem claro — texto azul escuro */
 .azul {
-  background: #1e40af;
-  color: #006426;
+  background: #ddeeff;
+  color: #1a3a7a;
 }
 
 .voltar {
@@ -100,8 +119,8 @@ body {
   bottom: 45px;
   padding: 14px 26px;
   border-radius: 14px;
-  background: #d2f4dc;
-  color: #006426;
+  background: #ddeeff;
+  color: #1a3a7a;
   font-weight: 900;
   text-decoration: none;
   font-size: 26px;
@@ -143,7 +162,6 @@ body {
   cursor: grabbing;
 }
 
-/* brilho no topo da bola */
 #botaoFlutuante::before {
   content: "";
   position: absolute;
@@ -157,7 +175,6 @@ body {
   pointer-events: none;
 }
 
-/* anel pulsante externo */
 #botaoFlutuante::after {
   content: "";
   position: absolute;
@@ -168,14 +185,12 @@ body {
   pointer-events: none;
 }
 
-/* container do texto em arco */
 #botaoFlutuante .arco-texto {
   position: absolute;
   inset: 0;
   border-radius: 50%;
 }
 
-/* cada letra do arco */
 #botaoFlutuante .arco-texto span {
   position: absolute;
   left: 50%;
@@ -218,13 +233,8 @@ body {
   max-height: 100%;
 }
 
-.img-topo {
-  z-index: 2;
-}
-
-.img-base {
-  z-index: 1;
-}
+.img-topo { z-index: 2; }
+.img-base  { z-index: 1; }
 
 #fecharOverlay {
   position: absolute;
@@ -238,18 +248,12 @@ body {
 
 /* ── ANIMAÇÕES ── */
 @keyframes pulsar {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 12px 30px rgba(0,0,0,.45), 0 0 22px rgba(255,223,0,.55);
-  }
-  50% {
-    transform: scale(1.06);
-    box-shadow: 0 14px 36px rgba(0,0,0,.5),  0 0 32px rgba(255,223,0,.75);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 12px 30px rgba(0,0,0,.45), 0 0 22px rgba(255,223,0,.55);
-  }
+  0%   { transform: scale(1);
+         box-shadow: 0 12px 30px rgba(0,0,0,.45), 0 0 22px rgba(255,223,0,.55); }
+  50%  { transform: scale(1.06);
+         box-shadow: 0 14px 36px rgba(0,0,0,.5),  0 0 32px rgba(255,223,0,.75); }
+  100% { transform: scale(1);
+         box-shadow: 0 12px 30px rgba(0,0,0,.45), 0 0 22px rgba(255,223,0,.55); }
 }
 
 @keyframes ring {
