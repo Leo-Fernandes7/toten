@@ -114,19 +114,19 @@
       transform: scale(0.992);
     }
 
-    /* azul médio — texto branco */
+
     .roxo {
       background: #5b8dd9;
       color: #ffffff;
     }
 
-    /* azul bem claro — texto azul escuro */
+
     .azul {
       background: #ddeeff;
       color: #1a3a7a;
     }
 
-    /* ── BOTÃO FLUTUANTE ── */
+  
 
     #botaoFlutuante {
       position: fixed;
@@ -158,7 +158,7 @@
       cursor: grabbing;
     }
 
-    /* brilho no topo */
+
     #botaoFlutuante::before {
       content: "";
       position: absolute;
@@ -172,7 +172,6 @@
       pointer-events: none;
     }
 
-    /* anel pulsante externo */
     #botaoFlutuante::after {
       content: "";
       position: absolute;
@@ -183,14 +182,14 @@
       pointer-events: none;
     }
 
-    /* container do texto em arco */
+   
     #botaoFlutuante .arco-texto {
       position: absolute;
       inset: 0;
       border-radius: 50%;
     }
 
-    /* cada letra do arco */
+   
     #botaoFlutuante .arco-texto span {
       position: absolute;
       left: 50%;
@@ -206,7 +205,7 @@
       pointer-events: none;
     }
 
-    /* ── OVERLAY ── */
+  
 
     #overlayFlutuante {
       position: fixed;
@@ -247,7 +246,7 @@
       cursor: pointer;
     }
 
-    /* ── ANIMAÇÕES ── */
+   
 
     @keyframes pulsar {
       0%   { transform: scale(1);
@@ -263,6 +262,12 @@
       100% { transform: scale(1.5); opacity: 0;  }
     }
 
+/* ── DESATIVA BOTÃO FLUTUANTE ── */
+
+    #botaoFlutuante {
+      display: none;
+    }
+    
   </style>
 </head>
 
@@ -319,12 +324,12 @@
     </main>
   </div>
 
-  <!-- BOTÃO FLUTUANTE -->
+ 
   <button id="botaoFlutuante" aria-label="Clique aqui">
     <div class="arco-texto" id="textoArco"></div>
   </button>
 
-  <!-- OVERLAY -->
+  
   <div id="overlayFlutuante">
 
     <div id="fecharOverlay">✕</div>
@@ -337,7 +342,7 @@
 
   <script>
 
-    /* ── fit totem ── */
+ 
     function fitToten() {
       const tela = document.getElementById('tela');
       const scale = Math.min(
@@ -349,7 +354,7 @@
     window.addEventListener('resize', fitToten);
     fitToten();
 
-    /* ── texto em arco ── */
+   
     const texto = "● CLIQUE AQUI ●";
     const containerTexto = document.getElementById("textoArco");
     const anguloTotal  = 160;
@@ -363,7 +368,7 @@
       containerTexto.appendChild(span);
     });
 
-    /* ── referências ── */
+  
     const botao   = document.getElementById("botaoFlutuante");
     const overlay = document.getElementById("overlayFlutuante");
     const imgBase = document.querySelector(".img-base");
@@ -373,7 +378,7 @@
     let etapa = 0;
     let intervalo;
 
-    /* ── overlay ── */
+    
     function abrirOverlay() {
       overlay.style.display = "flex";
       etapa = 1;
@@ -408,7 +413,7 @@
       clearInterval(intervalo);
     });
 
-    /* ── drag + clique (não abre se arrastou) ── */
+   
     let isDragging = false;
     let hasMoved   = false;
     let offsetX, offsetY;
