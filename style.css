@@ -101,13 +101,13 @@ body {
   transform: scale(0.992);
 }
 
-/* Azul médio — texto branco */
+
 .roxo {
   background: #5b8dd9;
   color: #ffffff;
 }
 
-/* Azul bem claro — texto azul escuro */
+
 .azul {
   background: #ddeeff;
   color: #1a3a7a;
@@ -131,7 +131,7 @@ body {
   transform: scale(0.99);
 }
 
-/* ── BOTÃO FLUTUANTE ── */
+
 #botaoFlutuante {
   position: fixed;
   top: 100px;
@@ -206,7 +206,7 @@ body {
   pointer-events: none;
 }
 
-/* ── OVERLAY ── */
+
 #overlayFlutuante {
   position: fixed;
   inset: 0;
@@ -246,7 +246,7 @@ body {
   cursor: pointer;
 }
 
-/* ── ANIMAÇÕES ── */
+
 @keyframes pulsar {
   0%   { transform: scale(1);
          box-shadow: 0 12px 30px rgba(0,0,0,.45), 0 0 22px rgba(255,223,0,.55); }
