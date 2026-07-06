@@ -1,5 +1,5 @@
 (function () {
-  const TIMEOUT_MS = 1 * 60 * 1000;
+  const TIMEOUT_MS = 10 * 1000;
   const HOME = "toten.html";
   let timer = null;
   function resetTimer() {
