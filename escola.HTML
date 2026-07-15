@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Lista de Empresas</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="stage">
+    <main class="tela" id="tela">
+      <div class="bg" aria-hidden="true"></div>
+      <img class="full" src="./img/listaempresas.png" alt="Lista de Empresas">
+      <a class="voltar" href="./toten.html" onclick="window.location.href='./toten.html'; return false;">VOLTAR</a>
+    </main>
+  </div>
+
+  <script>
+    function fitToten(){
+      const tela = document.getElementById('tela');
+      const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
+      tela.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fitToten);
+    fitToten();
+  </script>
+</body>
+</html>
